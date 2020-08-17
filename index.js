@@ -1,14 +1,13 @@
 #!/usr/bin/env node
 
 const prompts = require('prompts')
+const questions = require('./lib/questions')
+const { shell } = require('./lib/utils')
 
 ;(async () => {
-  const response = await prompts({
-    type: 'number',
-    name: 'value',
-    message: 'How old are you?',
-    validate: (value) => (value < 18 ? `Nightclub is 18+ only` : true),
-  })
+  const CWD = process.cwd()
 
-  console.log(response) // => { value: 24 }
+  const response = await prompts(questions({ cwd: CWD }))
+
+  shell(`yarn --help`)
 })()
