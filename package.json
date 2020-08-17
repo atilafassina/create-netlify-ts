@@ -1,9 +1,22 @@
 {
-  "name": "lambda-starter",
+  "name": "ts-lambda-starter",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:atilafassina/lambda-starter.git",
   "author": "Atila Fassina <atila@fassina.eu>",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "bin": {
+    "ts-lambda-starter": "index.js"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  },
+  "dependencies": {
+    "prompts": "^2.3.2"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.5"
+  }
 }
