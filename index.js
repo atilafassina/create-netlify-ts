@@ -4,6 +4,9 @@ const prompts = require('prompts')
 const questions = require('./lib/questions')
 const { shell, write, command } = require('./lib/utils')
 const pkgJsonTemplate = require('./templates/packageJson')
+const netlifyTomlTemplate = require('./templates/netlify/netlifyToml')
+const babelrcTemplate = require('./templates/netlify/babelrc')
+const netlifyHandlerTemplate = require('./templates/netlify/handler')
 const {
   NETLIFY_DEPENDENCIES,
   VERCEL_DEPENDENCIES,
@@ -19,7 +22,10 @@ const {
     platform,
     netlifyDev,
     packageManager,
+    shouldRewrite,
+    functionName,
   } = await prompts(questions({ cwd: CWD }))
+  console.log('function name', functionName)
   await shell(`mkdir ${packageName}`)
   const projectDir = `${CWD}/${packageName}`
   const gitName = await shell(`git config --global user.name`)
@@ -27,7 +33,7 @@ const {
   const devInstall = command(packageManager, 'DEV_INSTALL')
 
   await write(
-    projectDir,
+    projectDir + '/package.json',
     pkgJsonTemplate({
       platform,
       packageName,
@@ -43,13 +49,27 @@ const {
     await shell(`${packageManager} ${globalInstall} netlify-cli`)
   }
 
+  if (platform === 'netlify') {
+    await write(
+      projectDir + '/netlify.toml',
+      netlifyTomlTemplate({ packageManager, shouldRewrite, functionName })
+    )
+
+    await write(projectDir + '/.babelrc', babelrcTemplate)
+
+    await shell('mkdir src', projectDir)
+    await write(`${projectDir}/src/${functionName}.ts`, netlifyHandlerTemplate)
+  }
+
   switch (platform) {
     case 'netlify':
       if (withPrettier) NETLIFY_DEPENDENCIES.push('prettier')
+
       await shell(
         `${packageManager} ${devInstall} ${NETLIFY_DEPENDENCIES.join(' ')}`,
         projectDir
       )
+
       break
     case 'vercel':
       if (withPrettier) VERCEL_DEPENDENCIES.push('prettier')

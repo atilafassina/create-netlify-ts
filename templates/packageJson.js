@@ -20,7 +20,6 @@ module.exports = ({
   "name": "${packageName}",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:atilafassina/lambda-starter.git",
   "author": "${gitName.trimEnd()} <${gitEmail.trimEnd()}>",
   "license": "MIT",
   "private": ${isPrivate},
