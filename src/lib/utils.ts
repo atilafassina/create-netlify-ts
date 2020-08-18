@@ -2,7 +2,7 @@ const { promisify } = require('util')
 const exec = promisify(require('child_process').exec)
 const writeFile = promisify(require('fs').writeFile)
 
-function command(pkgManager, cmd) {
+function command(pkgManager: string, cmd: string) {
   switch (cmd) {
     case 'GLOBAL_INSTALL':
       return pkgManager === 'yarn' ? 'global add --silent' : 'i -g'
@@ -15,7 +15,7 @@ function command(pkgManager, cmd) {
   }
 }
 
-async function shell(cmd, cwd) {
+async function shell(cmd: string, cwd?: string) {
   const { stdout, stderr } = await exec(cmd, { cwd })
 
   if (stderr) {
@@ -25,12 +25,8 @@ async function shell(cmd, cwd) {
   return stdout
 }
 
-async function write(path, data) {
+async function write(path: string, data: {}) {
   return writeFile(path, data, 'utf8')
 }
 
-module.exports = {
-  shell,
-  write,
-  command,
-}
+export { shell, write, command }

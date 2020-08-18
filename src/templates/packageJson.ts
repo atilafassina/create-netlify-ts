@@ -1,4 +1,4 @@
-function createTasks(platform) {
+function createTasks(platform: string) {
   return platform === 'netlify'
     ? `"scripts": {
     "build": "netlify-lambda build src",
@@ -8,14 +8,18 @@ function createTasks(platform) {
     : ','
 }
 
-module.exports = ({
+type PkgJsonInfo = {
+  [key: string]: string
+}
+
+export default ({
   packageName,
   gitName,
   gitEmail,
   isPrivate,
   withPrettier,
   platform,
-}) => `
+}: PkgJsonInfo) => `
 {
   "name": "${packageName}",
   "version": "1.0.0",

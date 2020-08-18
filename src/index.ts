@@ -1,12 +1,20 @@
 #!/usr/bin/env node
+// /usr/bin/env node
+// const prompts = require('prompts')
+import prompts from 'prompts'
+import questions from './lib/questions'
+// const questions = require('./lib/questions')
+// const { shell, write, command } = require('./lib/utils')
+import { shell, write, command } from './lib/utils'
+import pkgJsonTemplate from './templates/packageJson'
+// const pkgJsonTemplate = require('../templates/packageJson')
+// const netlifyTomlTemplate = require('../templates/netlify/netlifyToml')
+import netlifyTomlTemplate from './templates/netlify/netlifyToml'
+import babelrcTemplate from './templates/netlify/babelrc'
+// const babelrcTemplate = require('../templates/netlify/babelrc')
+// const netlifyHandlerTemplate = require('../templates/netlify/handler')
+import netlifyHandlerTemplate from './templates/netlify/handler'
 
-const prompts = require('prompts')
-const questions = require('./lib/questions')
-const { shell, write, command } = require('./lib/utils')
-const pkgJsonTemplate = require('./templates/packageJson')
-const netlifyTomlTemplate = require('./templates/netlify/netlifyToml')
-const babelrcTemplate = require('./templates/netlify/babelrc')
-const netlifyHandlerTemplate = require('./templates/netlify/handler')
 const {
   NETLIFY_DEPENDENCIES,
   VERCEL_DEPENDENCIES,
@@ -25,7 +33,6 @@ const {
     shouldRewrite,
     functionName,
   } = await prompts(questions({ cwd: CWD }))
-  console.log('function name', functionName)
   await shell(`mkdir ${packageName}`)
   const projectDir = `${CWD}/${packageName}`
   const gitName = await shell(`git config --global user.name`)

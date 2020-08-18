@@ -1,14 +1,18 @@
-module.exports = ({ cwd }) => [
+import { PromptObject } from 'prompts'
+
+export default ({ cwd }: { cwd: string }): PromptObject[] => [
   {
     type: 'text',
     name: 'packageName',
     message: 'What is the name of the package?',
-    validate: (value) => (value.includes(' ') ? `Cannot have spaces` : true),
+    validate: (value: string) =>
+      value.includes(' ') ? `Cannot have spaces` : true,
   },
   {
     type: 'toggle',
     name: 'path',
-    message: (prev) => `We will create a new dir at ${cwd}/${prev}. Confirm?`,
+    message: (prev: string) =>
+      `We will create a new dir at ${cwd}/${prev}. Confirm?`,
     initial: true,
     active: 'yes',
     inactive: 'no',
@@ -76,7 +80,7 @@ module.exports = ({ cwd }) => [
     initial: 0,
   },
   {
-    type: (prev) => (prev === 'netlify' ? 'toggle' : null),
+    type: (prev: string) => (prev === 'netlify' ? 'toggle' : null),
     name: 'netlifyDev',
     message: 'May I install or update Netlify CLI (globally) for you?',
     initial: false,
@@ -84,7 +88,8 @@ module.exports = ({ cwd }) => [
     inactive: 'No',
   },
   {
-    type: (prev, { platform }) => (platform === 'netlify' ? 'toggle' : null),
+    type: (prev: string, { platform }) =>
+      platform === 'netlify' && Boolean(prev) ? 'toggle' : null,
     name: 'shouldRewrite',
     message:
       'Would you like to make a Rewrite from `/functions/.netlify` to the root?',
@@ -93,10 +98,11 @@ module.exports = ({ cwd }) => [
     inactive: 'No',
   },
   {
-    type: (prev, { platform }) =>
+    type: (prev: string, { platform }) =>
       platform === 'netlify' && prev ? 'text' : null,
     name: 'functionName',
     message: 'What is the name of the function?',
-    validate: (value) => (value.includes(' ') ? `Cannot have spaces` : true),
+    validate: (value: string) =>
+      value.includes(' ') ? `Cannot have spaces` : true,
   },
 ]

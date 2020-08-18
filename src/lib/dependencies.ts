@@ -6,9 +6,6 @@ const NETLIFY_DEPENDENCIES = [
   'typescript',
   '@types/aws-lambda',
 ]
-const VERCEL_DEPENDENCIES = []
+const VERCEL_DEPENDENCIES: string[] = []
 
-module.exports = {
-  NETLIFY_DEPENDENCIES,
-  VERCEL_DEPENDENCIES,
-}
+export { NETLIFY_DEPENDENCIES, VERCEL_DEPENDENCIES }

@@ -1,7 +1,11 @@
-module.exports = ({
+export default ({
   packageManager,
   shouldRewrite = false,
   functionName = '',
+}: {
+  packageManager: string
+  shouldRewrite: boolean
+  functionName: string
 }) => `
 # This file configures your Netlify deploy
 # Settings declared here override everything on Dashboard interface
