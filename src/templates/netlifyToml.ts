@@ -12,7 +12,7 @@ export default ({
 # https://docs.netlify.com/configure-builds/file-based-configuration/
 
 [build]
-  command = "${packageManager} build"
+  command = "${packageManager}${packageManager === 'npm' ? ' run' : ''} build"
   functions = "lambda"
 
 ${

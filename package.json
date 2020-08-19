@@ -8,6 +8,7 @@
   "private": true,
   "scripts": {
     "build": "tsc",
+    "test": "jest",
     "type-check": "tsc --noEmit"
   },
   "bin": {
@@ -22,9 +23,15 @@
     "prompts": "^2.3.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-typescript": "^7.10.4",
     "@types/node": "^14.6.0",
     "@types/prompts": "^2.0.8",
+    "babel-jest": "^26.3.0",
+    "jest": "^26.4.0",
     "prettier": "^2.0.5",
+    "toml": "^3.0.0",
     "typescript": "^3.9.7"
   }
 }

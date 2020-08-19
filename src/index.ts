@@ -25,7 +25,9 @@ import { DEV_DEPENDENCIES } from './lib/dependencies'
     },
   })
 
-  const spinner = ora('Setting up your stuff').start()
+  const spinner = ora('Setting up...')
+  spinner.color = 'green'
+  spinner.start()
 
   await shell(`mkdir ${packageName}`)
   const projectDir = `${CWD}/${packageName}`

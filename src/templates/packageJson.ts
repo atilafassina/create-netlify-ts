@@ -20,12 +20,13 @@ export default ({
     "build": "netlify-lambda build src",
     "ts-check": "tsc --noEmit --lib ES2015 ./src/*.ts"
   }${
-    withPrettier &&
-    `,
+    withPrettier
+      ? `,
   "prettier": {
     "semi": false,
     "singleQuote": true
   }`
+      : ''
   }
 }
 

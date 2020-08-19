@@ -6,7 +6,9 @@ export default ({ cwd }: { cwd: string }): PromptObject[] => [
     name: 'packageName',
     message: 'What is the name of the package?',
     validate: (value: string) =>
-      value.includes(' ') ? `Cannot have spaces` : true,
+      Boolean(value) && value.includes(' ')
+        ? `Cannot be blank, nor have spaces`
+        : true,
   },
   {
     type: 'toggle',
@@ -22,7 +24,9 @@ export default ({ cwd }: { cwd: string }): PromptObject[] => [
     name: 'functionName',
     message: 'What is the name of the function?',
     validate: (value: string) =>
-      value.includes(' ') ? `Cannot have spaces` : true,
+      Boolean(value) && value.includes(' ')
+        ? `Cannot be blank, nor have spaces`
+        : true,
   },
   {
     type: 'select',
