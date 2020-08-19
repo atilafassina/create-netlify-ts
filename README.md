@@ -1,12 +1,16 @@
+<img align="right" width="300" src="./netlify-lambda-ts.png" />
+
 # netlify-lambda-ts
 
-**👟 Building Netlify Functions with TypeScript has never been this easier**
+**👟 Building Netlify Functions with TypeScript easily**
 
-- Package Manager agnostic
-- No production footprint
-- Ready to deploy
+📦 Package Manager agnostic
 
-## ❯ Hit it!
+🐾 No production footprint
+
+🚀 Ready to deploy
+
+## ❯\_
 
 ### npm
 
@@ -20,9 +24,21 @@ npx netlify-lambda-ts
 yarn create netlify-lambda-ts
 ```
 
-🚀 Answer the questions and start coding!
+❓ Answer the questions and start coding!
 
-## 📦 Installed dependencies
+## 🌲 File tree
+
+```
+ {{ package-name }}
+  ├── src
+  │   └── {{ your-function-name }}.ts
+  ├── package.json
+  ├── .babelrc
+  ├── .gitignore
+  └── netlify.toml
+```
+
+## 🧳 Installed dependencies
 
 All depdendencies are installed as `devDependencies`, **netlify-lambda-ts** has no footprint on your production code.
 
@@ -42,3 +58,13 @@ All depdendencies are installed as `devDependencies`, **netlify-lambda-ts** has 
 
 - [Netlify CLI](https://docs.netlify.com/cli/get-started/) To run Netlify Functions locally
 - [Prettier](https://prettier.io): with some opinionated configuration
+
+## 🛫 Flying solo
+
+It‘s a dangerous road out there. Take these:
+
+📹 [Write an API with Netlify Functions and TypeScript](https://www.youtube.com/watch?v=3-Ie6p5ySKQ)
+
+🐙 [Monster As A Service](https://github.com/atilafassina/monster-as-a-service): written in TS, deployed to Netlify
+
+✍️ [Netlify Functions 💜 TypeScript](https://atila.io/posts/netlify-functions-typescript)
