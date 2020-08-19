@@ -1,6 +1,6 @@
-<img align="right" width="300" src="./netlify-lambda-ts.png" />
+<img align="right" width="300" src="./netlify-ts.png" />
 
-# netlify-lambda-ts
+# create-netlify-ts
 
 **👟 Building Netlify Functions with TypeScript easily**
 
@@ -15,16 +15,22 @@
 ### npm
 
 ```
-npx netlify-lambda-ts
+npx create-netlify-ts
 ```
 
 ### yarn
 
 ```
-yarn create netlify-lambda-ts
+yarn create netlify-ts
 ```
 
 ❓ Answer the questions and start coding!
+
+<div align="center">
+
+![Terminal showing create-netlify-ts working](/netlify-ts.gif)
+
+  </div>
 
 ## 🌲 File tree
 
@@ -40,7 +46,7 @@ yarn create netlify-lambda-ts
 
 ## 🧳 Installed dependencies
 
-All depdendencies are installed as `devDependencies`, **netlify-lambda-ts** has no footprint on your production code.
+All depdendencies are installed as `devDependencies`, **create-netlify-ts** has no footprint on your production code.
 
 ### Required dependencies
 
