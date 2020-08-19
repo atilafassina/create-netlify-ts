@@ -16,13 +16,14 @@ export default ({
   functions = "lambda"
 
 ${
-  shouldRewrite &&
-  `
+  shouldRewrite
+    ? `
 # redirects with status 200 are rewrites
 [[redirects]]
   from = "/"
   to = "/.netlify/functions/${functionName}"
   status = 200
 `
+    : ''
 }
 `

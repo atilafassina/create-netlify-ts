@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import prompts from 'prompts'
+import ora from 'ora'
 import questions from './lib/questions'
 import { shell, write, command } from './lib/utils'
 import pkgJsonTemplate from './templates/packageJson'
@@ -23,6 +24,8 @@ import { DEV_DEPENDENCIES } from './lib/dependencies'
       process.exit(0)
     },
   })
+
+  const spinner = ora('Setting up your stuff').start()
 
   await shell(`mkdir ${packageName}`)
   const projectDir = `${CWD}/${packageName}`
@@ -63,4 +66,5 @@ import { DEV_DEPENDENCIES } from './lib/dependencies'
     `${packageManager} ${devInstall} ${DEV_DEPENDENCIES.join(' ')}`,
     projectDir
   )
+  spinner.stop()
 })()
