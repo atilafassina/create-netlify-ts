@@ -12,10 +12,17 @@ export default ({ cwd }: { cwd: string }): PromptObject[] => [
     type: 'toggle',
     name: 'path',
     message: (prev: string) =>
-      `We will create a new dir at ${cwd}/${prev}. Confirm?`,
+      `A new directory will be created at ${cwd}/${prev}`,
     initial: true,
-    active: 'yes',
-    inactive: 'no',
+    active: 'OK',
+    inactive: 'Cancel',
+  },
+  {
+    type: (prev: string) => (prev ? 'text' : null),
+    name: 'functionName',
+    message: 'What is the name of the function?',
+    validate: (value: string) =>
+      value.includes(' ') ? `Cannot have spaces` : true,
   },
   {
     type: 'select',
@@ -44,27 +51,17 @@ export default ({ cwd }: { cwd: string }): PromptObject[] => [
     inactive: 'no',
   },
   {
-    type: 'select',
+    type: 'toggle',
     name: 'withPrettier',
-    message: 'Would like some Prettier with that?',
-    choices: [
-      {
-        title: 'Yes, please',
-        description: 'Looks goood!!',
-        value: true,
-      },
-      {
-        title: 'No, thanks',
-        description: 'I’m allergic.',
-        value: false,
-      },
-    ],
-    initial: 0,
+    message: 'Add Prettier?',
+    initial: false,
+    active: 'yes',
+    inactive: 'no',
   },
   {
     type: 'toggle',
     name: 'netlifyDev',
-    message: 'May I install or update Netlify CLI (globally) for you?',
+    message: 'Install or update Netlify CLI (globally)?',
     initial: false,
     active: 'Yes',
     inactive: 'No',
@@ -77,12 +74,5 @@ export default ({ cwd }: { cwd: string }): PromptObject[] => [
     initial: false,
     active: 'Yes',
     inactive: 'No',
-  },
-  {
-    type: (prev: string) => (prev ? 'text' : null),
-    name: 'functionName',
-    message: 'What is the name of the function?',
-    validate: (value: string) =>
-      value.includes(' ') ? `Cannot have spaces` : true,
   },
 ]
