@@ -7,6 +7,7 @@ import pkgJsonTemplate from './templates/packageJson'
 import netlifyTomlTemplate from './templates/netlifyToml'
 import babelrcTemplate from './templates/babelrc'
 import handlerTemplate from './templates/handler'
+import gitignoreTemplate from './templates/gitignore'
 import { DEV_DEPENDENCIES } from './lib/dependencies'
 ;(async () => {
   const CWD = process.cwd()
@@ -31,6 +32,8 @@ import { DEV_DEPENDENCIES } from './lib/dependencies'
 
   await shell(`mkdir ${packageName}`)
   const projectDir = `${CWD}/${packageName}`
+
+  await write(projectDir + '/.gitignore', gitignoreTemplate)
 
   const gitName = await shell(`git config --global user.name`)
   const gitEmail = await shell(`git config --global user.email`)
