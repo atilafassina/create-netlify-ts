@@ -11,7 +11,7 @@
     "type-check": "tsc --noEmit"
   },
   "bin": {
-    "ts-lambda-starter": "build/index.js"
+    "netlify-lambda-ts": "build/index.js"
   },
   "prettier": {
     "semi": false,
