@@ -1,4 +1,4 @@
-const NETLIFY_DEPENDENCIES = [
+const DEV_DEPENDENCIES = [
   'netlify-lambda',
   '@babel/core',
   '@babel/preset-env',
@@ -6,6 +6,4 @@ const NETLIFY_DEPENDENCIES = [
   'typescript',
   '@types/aws-lambda',
 ]
-const VERCEL_DEPENDENCIES: string[] = []
-
-export { NETLIFY_DEPENDENCIES, VERCEL_DEPENDENCIES }
+export { DEV_DEPENDENCIES }

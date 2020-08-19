@@ -62,25 +62,7 @@ export default ({ cwd }: { cwd: string }): PromptObject[] => [
     initial: 0,
   },
   {
-    type: 'select',
-    name: 'platform',
-    message: 'Netlify or Vercel?',
-    choices: [
-      {
-        title: 'Netlify',
-        description: '',
-        value: 'netlify',
-      },
-      {
-        title: 'Vercel',
-        description: '',
-        value: 'vercel',
-      },
-    ],
-    initial: 0,
-  },
-  {
-    type: (prev: string) => (prev === 'netlify' ? 'toggle' : null),
+    type: 'toggle',
     name: 'netlifyDev',
     message: 'May I install or update Netlify CLI (globally) for you?',
     initial: false,
@@ -88,8 +70,7 @@ export default ({ cwd }: { cwd: string }): PromptObject[] => [
     inactive: 'No',
   },
   {
-    type: (prev: string, { platform }) =>
-      platform === 'netlify' && Boolean(prev) ? 'toggle' : null,
+    type: 'toggle',
     name: 'shouldRewrite',
     message:
       'Would you like to make a Rewrite from `/functions/.netlify` to the root?',
@@ -98,8 +79,7 @@ export default ({ cwd }: { cwd: string }): PromptObject[] => [
     inactive: 'No',
   },
   {
-    type: (prev: string, { platform }) =>
-      platform === 'netlify' && prev ? 'text' : null,
+    type: (prev: string) => (prev ? 'text' : null),
     name: 'functionName',
     message: 'What is the name of the function?',
     validate: (value: string) =>
