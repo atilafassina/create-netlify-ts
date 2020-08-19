@@ -1,3 +1,4 @@
+const isYarnGlobal = require('is-yarn-global');
 import { PromptObject } from 'prompts'
 
 export default ({ cwd }: { cwd: string }): PromptObject[] => [
@@ -37,6 +38,7 @@ export default ({ cwd }: { cwd: string }): PromptObject[] => [
         title: 'Yarn',
         description: 'Use Yarn as the package manager',
         value: 'yarn',
+        disabled: !isYarnGlobal()
       },
       {
         title: 'NPM',
@@ -44,7 +46,7 @@ export default ({ cwd }: { cwd: string }): PromptObject[] => [
         value: 'npm',
       },
     ],
-    initial: 0,
+    initial: isYarnGlobal() ? 0 : 1,
   },
   {
     type: 'toggle',
