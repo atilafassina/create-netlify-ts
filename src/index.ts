@@ -72,5 +72,5 @@ import { DEV_DEPENDENCIES } from './lib/dependencies'
   )
 
   spinner.stop()
-  console.log(`👟 ${functionName}'s builded :)`)
+   console.log(`👟  ${functionName}’s built`)
 })()
