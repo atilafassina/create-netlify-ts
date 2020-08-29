@@ -18,6 +18,7 @@
     "singleQuote": true
   },
   "dependencies": {
+    "is-yarn-global": "^0.3.0",
     "ora": "^5.0.0",
     "prompts": "^2.3.2"
   },

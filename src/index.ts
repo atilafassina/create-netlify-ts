@@ -55,12 +55,11 @@ import { DEV_DEPENDENCIES } from './lib/dependencies'
     await shell(`${packageManager} ${globalInstall} netlify-cli`)
   }
 
-  await write(
-    projectDir + '/netlify.toml',
+  await write(`${projectDir}/netlify.toml`,
     netlifyTomlTemplate({ packageManager, shouldRewrite, functionName })
   )
 
-  await write(projectDir + '/.babelrc', babelrcTemplate)
+  await write(`${projectDir}/.babelrc`, babelrcTemplate)
 
   await shell('mkdir src', projectDir)
   await write(`${projectDir}/src/${functionName}.ts`, handlerTemplate)
@@ -71,5 +70,7 @@ import { DEV_DEPENDENCIES } from './lib/dependencies'
     `${packageManager} ${devInstall} ${DEV_DEPENDENCIES.join(' ')}`,
     projectDir
   )
+
   spinner.stop()
+   console.log(`👟  ${functionName}’s built`)
 })()
