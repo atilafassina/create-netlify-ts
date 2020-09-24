@@ -1,9 +1,12 @@
 export default `
 import { APIGatewayEvent, Context } from 'aws-lambda'
 
-export default async function handler (event: APIGatewayEvent, context: Context) {
+export async function handler (event: APIGatewayEvent, context: Context) {
   return {
-    status: 200,
+    statusCode: 200,
+    headers: {
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify({
       msg: 'Hello Netlify Functions'
     })
